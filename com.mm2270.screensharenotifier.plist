@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.mm2270.screensharenotifier</string>
+	<key>Program</key>
+	<string>/Library/Application Support/ScreenShareNotifier/screenshare-notifier.sh</string>
+	<key>RunAtLoad</key>
+	<false/>
+	<key>WatchPaths</key>
+	<array>
+		<string>/private/var/log/screenshare-notifier.log</string>
+	</array>
+</dict>
+</plist>
