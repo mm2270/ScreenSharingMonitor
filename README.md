@@ -45,6 +45,19 @@ There are a couple of known issues with the above process.
 If I ever discover a more reliable way of knowing when **only** a valid authentication and connection is established, I will update the script accordingly.  
 **NOTE:** This last issue doesn't affect Casper Remote Screen Sharing sessions if the "Screen Share with Remote Computers Without Asking" option is ***unchecked*** for the account. The Notification Center alert will only appear after the remote admin is granted permission to view the user's screen, by the user. If the connection is denied instead, no message appears.
 
+####Installation
+
+If you wish to use the above components as is without modification, follow these steps:
+
+1. Install ```com.mm2270.screensharemon.plist``` into ```/Library/LaunchDaemons/```
+2. Install ```com.mm2270.screensharenotifier.plist``` into ```/Library/LaunchAgents/```
+3. Create a new directory called **ScreenShareNotifier** inside ```/Library/Application\ Support/```
+4. Install the following items into the ScreenShareNotifier directory:  
+      • ```screenshare-monitor.sh```  
+      • ```screenshare-notifier.sh```  
+5. Download the custom built **screenshare-notifier.app** (built from terminal-notifier source code found [here](https://github.com/alloy/terminal-notifier)) and install it into ScreenShareNotifier directory.
+6. Load both the LaunchDaemon and LaunchAgent using ```launchctl```, or reboot and log in to activate them.
+
 ####Additional Components
 The custom built terminal-notifier (screenshare-notifier.app) can be found on the [Releases](https://github.com/mm2270/ScreenSharingMonitor/releases) page.
 
