@@ -44,3 +44,8 @@ There are a couple of known issues with the above process.
 2. When a remote connection is started using the OSes built in Screen Sharing.app, at the time the authentication prompt appears for the remote connecting admin, port 5900 shows an "established" connection. As a result, a notification may appear about an active Screen Sharing connection even before the initiating user has successfully authenticated and connected to the remote Mac. There doesn't seem to be a good way to prevent this from happening as things stand right now. There is no difference in how the connection appears on the system before and after successful authentication.  
 If I ever discover a more reliable way of knowing when **only** a valid authentication and connection is established, I will update the script accordingly.  
 **NOTE:** This last issue doesn't affect Casper Remote Screen Sharing sessions if the "Screen Share with Remote Computers Without Asking" option is ***unchecked*** for the account. The Notification Center alert will only appear after the remote admin is granted permission to view the user's screen, by the user. If the connection is denied instead, no message appears.
+
+####Additional Components
+The custom built terminal-notifier (screenshare-notifier.app) can be found on the [Releases](https://github.com/mm2270/ScreenSharingMonitor/releases) page.
+
+A prebuilt installer package that will install all requisite files and loads the LaunchAgent and LaunchDaemon after installation can be downloaded on the [Releases](https://github.com/mm2270/ScreenSharingMonitor/releases) page.
