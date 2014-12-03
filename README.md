@@ -1,4 +1,4 @@
-ScreenSharingMonitor
+Screen Share Monitor 1.0
 ====================
 
 A process for end user notifications of when a screen sharing session starts and ends
@@ -12,6 +12,7 @@ A process for end user notifications of when a screen sharing session starts and
 ##### Workflow
 Once the LaunchAgent, LaunchDaemon and other components like terminal-notifier are installed in the appropriate locations, and the Daemon and Agent are loaded, the process works as follows:
 
+######For Start Notifications
 1. The LaunchDaemon runs every 12 seconds and runs a root level command that monitors for active (established) incoming Screen Sharing connections on the default port of 5900
 2. If an active session is seen, the script checks to see if there is a local file in the path of **/Library/Application Support/ScreenSharingMonitor/ON**. If the file is present, it means a previous notification has already been displayed to the end user.
 3. If the **"ON"** file is not present, it gathers information such as the connecting account (HostName or UserName) as well as the current time and some other items, then creates the **"ON"** file and stores the above informaiton in it in tab separated fields.
