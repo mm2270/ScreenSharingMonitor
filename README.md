@@ -21,9 +21,11 @@ Once the LaunchAgent, LaunchDaemon and other components like terminal-notifier a
 
 ######For Session End Notifications
 Similar to the process outlined above, the LaunchDaemon does the following actions:
+
 1. Runs every 12 seconds and runs a root level command that monitors for active (established) incoming Screen Sharing connections on the default port of 5900
 2. If no active sessions are found, it checks to see if there is a local file in the path of **/Library/Application Support/ScreenSharingMonitor/ON**. If the file is present, it means a previous notification has already been displayed to the end user. But in this instance, it means it now needs to notify the user that the Screen Sharing session has ended.
 3. If the **"ON"** file is present, it gathers information from the file, generates an appropriate message and writes a log entry for the end of the Screen Sharing session.
 4. The entry in the **/private/var/log/screenshare-notifier.log** causes the LaunchAgent to active and notify the user of the session end.
 5. The LaucnhDaemon waits a moment for the notificaiton to complete, then deletes the **"ON"** file so no further notifications will appear.
+
 NOTE: As part of the log entry, the LaunchDaemon calculates an approximate session length, based on the timestamp in the **"ON"** file and the time the session ended.
