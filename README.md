@@ -20,7 +20,7 @@ The toolset outlined below can be used in both a Casper Suite environment (Caspe
 
 <br>
 ####Workflow
-Once the LaunchAgent, LaunchDaemon and other components like terminal-notifier are installed in the appropriate locations, and the Daemon and Agent are loaded, the process works as follows:
+Once the LaunchAgent, LaunchDaemon and other components like terminal-notifier are installed in the appropriate locations, and the Daemon and Agent are loaded, the process works as follows:  
 
 ######For Session Start Notifications
 1. The LaunchDaemon runs every 12 seconds and runs a root level command that monitors for active (established) incoming Screen Sharing connections on the default port of 5900
@@ -29,7 +29,6 @@ Once the LaunchAgent, LaunchDaemon and other components like terminal-notifier a
 4. The LaunchDaemon also writes the above information into a /private/var/log/screenshare-notifier.log file.
 5. The action of logging the information to the log file triggers the User Level LaunchAgent to pull the information from the log and generate the text for a notification, then sends the Notification Center message using the custom build terminal-notifier located in **/Library/Application Support/screenshare-notifier.app**  
 
-<br>
 ######For Session End Notifications
 Similar to the process outlined above, the LaunchDaemon does the following actions:
 
@@ -41,7 +40,6 @@ Similar to the process outlined above, the LaunchDaemon does the following actio
 
 NOTE: As part of the log entry, the LaunchDaemon calculates and writes in an approximate session length, based on the timestamp in the **"ON"** file and the time the session ended.  
   
-<br>
 ######With no session active
 
 If there is no active Screen Sharing session when the LaunchDaemon runs the script, it checks to see if a previous **/Library/Application Support/ScreenShareMonitor/ON** file is present. If there isn't one, it assumes no notifications need to be delivered and exits silently, waiting another 12 seconds to check again.  
@@ -66,14 +64,15 @@ If you wish to use the above components as is without modification, follow these
       • ```screenshare-monitor.sh```  
       • ```screenshare-notifier.sh```  
 5. Download the custom built **screenshare-notifier.app** (built from terminal-notifier source code found [here](https://github.com/alloy/terminal-notifier)) and install it into ScreenShareNotifier directory.
-6. Load both the LaunchDaemon and LaunchAgent using ```launchctl```, or reboot and log in to activate them.
+6. Load both the LaunchDaemon and LaunchAgent using ```launchctl```, or reboot and log in to activate them.  
 
+<br>
 ####Additional Components
 The custom built terminal-notifier (screenshare-notifier.app) can be found on the [Releases](https://github.com/mm2270/ScreenSharingMonitor/releases) page.
 
-A prebuilt installer package that will install all requisite files and loads the LaunchAgent and LaunchDaemon after installation can be downloaded on the [Releases](https://github.com/mm2270/ScreenSharingMonitor/releases) page.
-
-
+A prebuilt installer package that will install all requisite files and loads the LaunchAgent and LaunchDaemon after installation can be downloaded on the [Releases](https://github.com/mm2270/ScreenSharingMonitor/releases) page.  
+  
+<br>
 ####Known Issues
 
 The following lists some known issues with the process as designed.  
