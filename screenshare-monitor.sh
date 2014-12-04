@@ -32,8 +32,6 @@ f_notifyStart ()
 ##			3) The session type (Casper Remote or standard Screen Sharing)
 ## 		Builds a message string from the above values
 ## 		Logs the string to the local log file at '/private/var/log/screenshare-notifier.log'
-##		Looks for a logged in user (we can't display a Notification if at the login screen)
-## 		Delivers the 'session start' notification to the logged in user
 ##		Or, exits silently if a previous '/Library/Application Support/ScreenShareNotifier/ON' is found (prevents repeated notifications during a session)
 
 ## Check to see if the 'ON' file is present
