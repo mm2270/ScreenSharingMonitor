@@ -5,7 +5,7 @@ A process for end user notifications of when a screen sharing session starts and
 
 The toolset outlined below can be used in both a Casper Suite environment (Casper Remote) or with regular Apple Screen Sharing, and will distinguish properly between the two types.
 
-####Components used in the process:  
+#### Components used in the process:  
 1. A LaunchDaemon:  
       `com.mm2270.screensharemon.plist`  
 
@@ -19,17 +19,17 @@ The toolset outlined below can be used in both a Casper Suite environment (Caspe
 3. terminal-notifier (for the user notifications. This can be replaced with some other notification process, like an Applescript dialog, cocoaDialog, etc, if desired) You can also use a branded version of terminal-notifier, although the script is designed to make the notifications come from either Screen Sharing or Self Service (in the case of a Casper Remote Screen Sharing session)  
 
 <br>
-####Workflow
+#### Workflow
 Once the LaunchAgent, LaunchDaemon and other components like terminal-notifier are installed in the appropriate locations, and the Daemon and Agent are loaded, the process works as follows:  
 
-######For Session Start Notifications
+###### For Session Start Notifications
 1. The LaunchDaemon runs every 12 seconds and runs a root level command that monitors for active (established) incoming Screen Sharing connections on the default port of 5900
 2. If an active session is seen, the script checks to see if there is a local file in the path of **/Library/Application Support/ScreenSharingMonitor/ON**. If the file is present, it means a previous notification has already been displayed to the end user. It will exit silently in this instance.
 3. If an active session is seen and the **"ON"** file is ***not*** present, it gathers information such as the connecting account (HostName, IP address or user name) as well as the current time and some other items, then creates the **"ON"** file and stores this informaiton in it in tab separated fields.
 4. The LaunchDaemon also writes the above information into a /private/var/log/screenshare-notifier.log file.
 5. The action of logging the information to the log file triggers the User Level LaunchAgent to pull the information from the log and generate the text for a notification, then sends the Notification Center message using the custom build terminal-notifier located in **/Library/Application Support/screenshare-notifier.app**  
 
-######For Session End Notifications
+###### For Session End Notifications
 Similar to the process outlined above, the LaunchDaemon does the following actions:
 
 1. The LaunchDaemon runs every 12 seconds and runs a root level command that monitors for active (established) incoming Screen Sharing connections on the default port of 5900
@@ -40,12 +40,12 @@ Similar to the process outlined above, the LaunchDaemon does the following actio
 
 NOTE: As part of the log entry, the LaunchDaemon calculates and writes in an approximate session length, based on the timestamp in the **"ON"** file and the time the session ended.  
   
-######With no session active
+###### With no session active
 
 If there is no active Screen Sharing session when the LaunchDaemon runs the script, it checks to see if a previous **/Library/Application Support/ScreenShareMonitor/ON** file is present. If there isn't one, it assumes no notifications need to be delivered and exits silently, waiting another 12 seconds to check again.  
   
 <br>
-####Compatibility
+#### Compatibility
 
 As the process as outlined above uses terminal-notifier, and thus Notification Center messages, in its default state it is compatible with OS X Mountain Lion 10.8.x and up through the current Yosemite 10.10.x.  
 If you wish to have this work for older OS X versions before Notification Center was present, you would need to modify the ```screenshare-notifier.sh``` script to call a different messaging system, such as cocoaDialog, AppleScript or the like.  
@@ -53,7 +53,7 @@ If you wish to have this work for older OS X versions before Notification Center
 Additionally, testing has been conducted on Casper Suite versions 8.73 and 9.61. It may work the same under even older Casper Suite releases, as well as new releases, but no testing beyond these versions has been conducted at this time.  
   
 <br>
-####Installation
+#### Installation
 
 If you wish to use the above components as is without modification, follow these steps:
 
@@ -67,13 +67,13 @@ If you wish to use the above components as is without modification, follow these
 6. Load both the LaunchDaemon and LaunchAgent using ```launchctl```, or reboot and log in to activate them.  
 
 <br>
-####Additional Components
+#### Additional Components
 The custom built terminal-notifier (screenshare-notifier.app) can be found on the [Releases](https://github.com/mm2270/ScreenSharingMonitor/releases) page.
 
 A prebuilt installer package that will install all requisite files and loads the LaunchAgent and LaunchDaemon after installation can be downloaded on the [Releases](https://github.com/mm2270/ScreenSharingMonitor/releases) page.  
   
 <br>
-####Examples  
+#### Examples  
 
 The images below illustrate some examples of how tbe Notification Center messages appear. The script is able to distinguish between Apple built in Screen Sharing and a Casper Remote Screen Sharing session, as shown in the images below. (Hostnames blocked out)  
 In Notification Center, the messages get categorized under either "Screen Sharing" or "Self Service" so they are easy to locate.  
@@ -96,7 +96,7 @@ Note that the **Session length** is recorded at the end of the entry.
     Session length: 00:01:35  
     ========================
 
-####Known Issues
+#### Known Issues
 
 The following lists some known issues with the process as designed.  
 
